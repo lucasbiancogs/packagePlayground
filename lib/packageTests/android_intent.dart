@@ -23,7 +23,7 @@ class AndroidIntentScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            RaisedButton(
+            ElevatedButton(
               child: Text('Call Frotalog Condutor using package'),
               onPressed: _callFrotalogCondutorPackage,
             ),

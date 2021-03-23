@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   android_intent: 0.3.7+7
+  native_add:
+    path: ../native_add
 
 
   # The following adds the Cupertino Icons font to your application.
