@@ -3,6 +3,7 @@ import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:packagePlayground/appRoutes.dart';
 import 'package:packagePlayground/packageTests/android_intent.dart';
+import 'package:packagePlayground/packageTests/background_location.dart';
 import 'package:packagePlayground/packageTests/ffi_screen.dart';
 import 'package:packagePlayground/packageTests/isolate_screen.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.ANDROID_INTENT: (_) => AndroidIntentScreen(),
         AppRoutes.FFI: (_) => FfiScreen(),
         AppRoutes.ISOLATE: (_) => IsolateScreen(),
+        AppRoutes.BACKGROUND_LOCATION: (_) => BackgroundLocationScreen(),
       },
     );
   }
@@ -48,7 +50,7 @@ class Home extends StatelessWidget {
             ),
             ElevatedButton(
               child: Text(
-                'android_intent',
+                'Android Intents',
                 style: TextStyle(fontSize: 20),
               ),
               onPressed: () {
@@ -57,7 +59,7 @@ class Home extends StatelessWidget {
             ),
             ElevatedButton(
               child: Text(
-                'ffi',
+                'Ffi',
                 style: TextStyle(fontSize: 20),
               ),
               onPressed: () {
@@ -66,11 +68,20 @@ class Home extends StatelessWidget {
             ),
             ElevatedButton(
               child: Text(
-                'isolate',
+                'Isolates',
                 style: TextStyle(fontSize: 20),
               ),
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.ISOLATE);
+              },
+            ),
+            ElevatedButton(
+              child: Text(
+                'Background location',
+                style: TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.BACKGROUND_LOCATION);
               },
             ),
           ],
