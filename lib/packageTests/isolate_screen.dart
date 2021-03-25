@@ -12,10 +12,27 @@ class _IsolateScreenState extends State<IsolateScreen> {
   int foregroundCount = 0;
   int backgroundCount = 0;
   SendPort mainToIsolateStream;
+  ReceivePort isolateToMainStream;
 
   void startIsolate() async {
-    mainToIsolateStream = await initIsolate();
+    final streams = await initIsolate();
+
+    mainToIsolateStream = streams['sendPort'];
+    isolateToMainStream = streams['receivePort'];
+
     mainToIsolateStream.send('Isolate iniciado');
+    isolateToMainStream.listen((message) {
+      if (message is BackgroundCounter) {
+        setState(() {
+          backgroundCount = message.counter;
+        });
+      }
+      if (message is ForegroundCounter) {
+        setState(() {
+          foregroundCount = message.counter;
+        });
+      }
+    });
   }
 
   void foregroundAdd() {
