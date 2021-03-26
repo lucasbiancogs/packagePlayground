@@ -196,45 +196,45 @@ class LatestLocationsMap extends StatelessWidget {
       child: FutureBuilder(
         future: fetchLocations(),
         builder: (ctx, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
-          }
-
           if (snapshot.hasError) {
             return Center(
               child: Text('Ocorreu um erro'),
             );
           }
 
-          final List<LatLng> locations = snapshot.data;
+          if (snapshot.hasData) {
+            final List<LatLng> locations = snapshot.data;
 
-          final LatLng center = getCenter(locations);
+            final LatLng center = getCenter(locations);
 
-          return FlutterMap(
-            options: MapOptions(
-              center: center,
-              zoom: 13.0,
-            ),
-            layers: [
-              TileLayerOptions(
-                  urlTemplate:
-                      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  subdomains: ['a', 'b', 'c']),
-              PolylineLayerOptions(
-                polylines: [
-                  Polyline(
-                    points: locations,
-                    strokeWidth: 4.0,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ],
+            return FlutterMap(
+              options: MapOptions(
+                center: center,
+                zoom: 13.0,
               ),
-              MarkerLayerOptions(
-                markers: getMarkers(locations),
-              ),
-            ],
+              layers: [
+                TileLayerOptions(
+                    urlTemplate:
+                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    subdomains: ['a', 'b', 'c']),
+                PolylineLayerOptions(
+                  polylines: [
+                    Polyline(
+                      points: locations,
+                      strokeWidth: 4.0,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ],
+                ),
+                MarkerLayerOptions(
+                  markers: getMarkers(locations),
+                ),
+              ],
+            );
+          }
+
+          return Center(
+            child: CircularProgressIndicator.adaptive(),
           );
         },
       ),

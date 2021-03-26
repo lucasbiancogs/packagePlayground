@@ -2,32 +2,44 @@ PODS:
   - background_location (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - flutter_phone_state (0.0.1):
+    - Flutter
   - native_add (0.0.1):
     - Flutter
   - "permission_handler (5.1.0+2)":
+    - Flutter
+  - url_launcher (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - background_location (from `.symlinks/plugins/background_location/ios`)
   - Flutter (from `Flutter`)
+  - flutter_phone_state (from `.symlinks/plugins/flutter_phone_state/ios`)
   - native_add (from `.symlinks/plugins/native_add/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 EXTERNAL SOURCES:
   background_location:
     :path: ".symlinks/plugins/background_location/ios"
   Flutter:
     :path: Flutter
+  flutter_phone_state:
+    :path: ".symlinks/plugins/flutter_phone_state/ios"
   native_add:
     :path: ".symlinks/plugins/native_add/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
   background_location: 1b80c1fe3abd9912bca298618f6e365abf6f588f
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_phone_state: ebb27962d725cbe0bdf498654c2a9083acf91b75
   native_add: 1d46aec1623a161f6f5604023c5a5c95b917871f
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
 PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
 
