@@ -2,10 +2,11 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:packagePlayground/appRoutes.dart';
-import 'package:packagePlayground/packageTests/android_intent.dart';
-import 'package:packagePlayground/packageTests/background_location.dart';
-import 'package:packagePlayground/packageTests/ffi_screen.dart';
-import 'package:packagePlayground/packageTests/isolate_screen.dart';
+import 'package:packagePlayground/packageTests/androidIntentScreen.dart';
+import 'package:packagePlayground/packageTests/backgroundLocationScreen.dart';
+import 'package:packagePlayground/packageTests/ffiScreen.dart';
+import 'package:packagePlayground/packageTests/isolateScreen.dart';
+import 'package:packagePlayground/packageTests/phoneStateScreen.dart';
 
 void main() async {
   
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.FFI: (_) => FfiScreen(),
         AppRoutes.ISOLATE: (_) => IsolateScreen(),
         AppRoutes.BACKGROUND_LOCATION: (_) => BackgroundLocationScreen(),
+        AppRoutes.PHONE_STATE: (_) => PhoneStateScreen(),
       },
     );
   }
@@ -82,6 +84,15 @@ class Home extends StatelessWidget {
               ),
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.BACKGROUND_LOCATION);
+              },
+            ),
+            ElevatedButton(
+              child: Text(
+                'Phone state',
+                style: TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.PHONE_STATE);
               },
             ),
           ],
