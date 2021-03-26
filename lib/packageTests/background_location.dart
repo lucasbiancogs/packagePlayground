@@ -28,6 +28,7 @@ class _BackgroundLocationScreenState extends State<BackgroundLocationScreen> {
 
   @override
   void dispose() {
+    print('dispose');
     BackgroundLocation.stopLocationService();
     super.dispose();
   }
@@ -61,7 +62,8 @@ class _BackgroundLocationScreenState extends State<BackgroundLocationScreen> {
           DateTime.fromMillisecondsSinceEpoch(location.time.toInt()).toString();
     });
 
-    final firebaseUrl = Uri.parse('https://package-playground-default-rtdb.firebaseio.com/locations.json');
+    final firebaseUrl = Uri.parse(
+        'https://package-playground-default-rtdb.firebaseio.com/locations.json');
 
     http.post(
       firebaseUrl,
@@ -76,7 +78,7 @@ class _BackgroundLocationScreenState extends State<BackgroundLocationScreen> {
     );
   }
 
-  void startLocationService() async {
+  Future<void> startLocationService() async {
     await BackgroundLocation.setAndroidNotification(
       title: "Background service is running",
       message: "Background location in progress",
@@ -84,10 +86,11 @@ class _BackgroundLocationScreenState extends State<BackgroundLocationScreen> {
     );
 
     await BackgroundLocation.setAndroidConfiguration(1000);
-
     await BackgroundLocation.startLocationService(distanceFilter: 20);
 
     BackgroundLocation.getLocationUpdates(_getLocationUpdates);
+
+    return Future.value();
   }
 
   @override
@@ -130,9 +133,7 @@ class _BackgroundLocationScreenState extends State<BackgroundLocationScreen> {
 class LatestLocationsMap extends StatelessWidget {
   Future<List<LatLng>> fetchLocations() async {
     final List<LatLng> locations = [];
-    print('comecei');
     try {
-      print('aqui');
       final firebaseUrl = Uri.parse(
           'https://package-playground-default-rtdb.firebaseio.com/locations.json');
 
